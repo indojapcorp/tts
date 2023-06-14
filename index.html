@@ -240,7 +240,7 @@
 
 
         playBtn.addEventListener('click', () => {
-            speakText(transcriptTextarea.value);
+            speakText(transcriptTextarea.value.replace(/(?:\r\n|\r|\n|\/|:)/g, '...'));
         });
 
         // pause the TTS when the pause button is clicked
@@ -380,6 +380,12 @@
         // Add event listeners for text-to-speech
         document.getElementById("transcript").addEventListener("mouseup", e => {
             const selectedText = window.getSelection().toString();
+            const pattern = /(?:\r\n|\r|\n|\/|:)/;
+            if (pattern.test(selectedText)) {
+            console.log('Contains new line');
+            return;
+            }
+
             if (deflang == 'en') {
                 getDefinitionExample();
             }
@@ -391,6 +397,12 @@
 
         function getDefinition() {
             var selectedText = window.getSelection().toString().trim();
+            const pattern = /(?:\r\n|\r|\n|\/|:)/;
+            if (pattern.test(selectedText)) {
+            console.log('Contains new line');
+            return;
+            }
+
             if (selectedText !== "") {
                 var apiUrl = 'https://api.dictionaryapi.dev/api/v2/entries/en/' + selectedText;
                 fetch(apiUrl)
@@ -411,6 +423,12 @@
         function getDefinitionExample() {
 
             var selectedText = window.getSelection().toString().trim();
+            const pattern = /(?:\r\n|\r|\n|\/|:)/;
+            if (pattern.test(selectedText)) {
+            console.log('Contains new line');
+            return;
+            }
+
             if (selectedText !== "") {
                 //var apiUrl = 'https://api.dictionaryapi.dev/api/v2/entries/en/' + selectedText;
                 var apiUrl = 'https://api.dictionaryapi.dev/api/v2/entries/' + deflang + '/' + selectedText;
@@ -434,6 +452,12 @@
 
         function getJishoOrgDefinitionExample() {
             var selectedText = window.getSelection().toString().trim();
+            const pattern = /(?:\r\n|\r|\n|\/|:)/;
+            if (pattern.test(selectedText)) {
+            console.log('Contains new line');
+            return;
+            }
+
             if (selectedText !== "") {
                 var apiUrl = 'https://jisho.org/api/v1/search/words?keyword=' + selectedText;
                 fetch(apiUrl)
@@ -456,6 +480,12 @@
 
         function getDefinitionFromCSV() {
             var selectedText = window.getSelection().toString().trim();
+            const pattern = /(?:\r\n|\r|\n|\/|:)/;
+            if (pattern.test(selectedText)) {
+            console.log('Contains new line');
+            return;
+            }
+
             if (selectedText !== "") {
                 var request = new XMLHttpRequest();
                 var url = "data/GRE_1300.csv";
