@@ -566,7 +566,8 @@
 
                     var kuroshiro = new Kuroshiro();//https://github.com/indojapcorp/tts/tree/main/js/dict
                     //https://indojapcorp.github.io/tts/js/dict
-                    kuroshiro.init(new KuromojiAnalyzer({ dictPath: "https://indojapcorp.github.io/tts/js/dict" }))
+                    //kuroshiro.init(new KuromojiAnalyzer({ dictPath: "https://indojapcorp.github.io/tts/js/dict" }))
+                    kuroshiro.init(new KuromojiAnalyzer({ dictPath: "js/dict" }))
                     //kuroshiro.init(new KuromojiAnalyzer({ dictPath: "https://github.com/indojapcorp/tts/tree/main/js/dict" }))
                         .then(function () {
                             return kuroshiro.convert(sourceText, { mode: "furigana", to: "romaji" });
