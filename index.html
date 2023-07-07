@@ -281,6 +281,25 @@
             "日本語": "Kyoko"
         };
 
+        function loadScript() {
+            const kuroshirominscript = document.createElement("script");
+
+            kuroshirominscript.src = "https://indojapcorp.github.io/tts/js/kuroshiro.min.js";
+            kuroshirominscript.async = true;
+
+            const kuroshiroanalminscript = document.createElement("script");
+            kuroshiroanalminscript.src = "https://indojapcorp.github.io/tts/js/kuroshiro-analyzer-kuromoji.min.js";
+            kuroshiroanalminscript.async = true;
+
+            // const container = document.createElement("div");
+            // container.appendChild(kuroshirominscript);
+            // container.appendChild(kuroshiroanalminscript);
+            // Append the container to the head or body of your HTML document
+            document.head.appendChild(kuroshirominscript);
+            document.head.appendChild(kuroshiroanalminscript);
+        }
+
+
         function speakText(text) {
             utterance.text = text;
 
@@ -357,8 +376,6 @@
             } else if (document.selection) {  // IE?
                 document.selection.empty();
             }
-
-
         }
 
         recognition.onresult = function (event) {
@@ -382,8 +399,8 @@
             const selectedText = window.getSelection().toString();
             const pattern = /(?:\r\n|\r|\n|\/|:)/;
             if (pattern.test(selectedText)) {
-            console.log('Contains new line');
-            return;
+                console.log('Contains new line');
+                return;
             }
 
             if (deflang == 'en') {
@@ -399,8 +416,8 @@
             var selectedText = window.getSelection().toString().trim();
             const pattern = /(?:\r\n|\r|\n|\/|:)/;
             if (pattern.test(selectedText)) {
-            console.log('Contains new line');
-            return;
+                console.log('Contains new line');
+                return;
             }
 
             if (selectedText !== "") {
@@ -425,8 +442,8 @@
             var selectedText = window.getSelection().toString().trim();
             const pattern = /(?:\r\n|\r|\n|\/|:)/;
             if (pattern.test(selectedText)) {
-            console.log('Contains new line');
-            return;
+                console.log('Contains new line');
+                return;
             }
 
             if (selectedText !== "") {
@@ -454,8 +471,8 @@
             var selectedText = window.getSelection().toString().trim();
             const pattern = /(?:\r\n|\r|\n|\/|:)/;
             if (pattern.test(selectedText)) {
-            console.log('Contains new line');
-            return;
+                console.log('Contains new line');
+                return;
             }
 
             if (selectedText !== "") {
@@ -482,8 +499,8 @@
             var selectedText = window.getSelection().toString().trim();
             const pattern = /(?:\r\n|\r|\n|\/|:)/;
             if (pattern.test(selectedText)) {
-            console.log('Contains new line');
-            return;
+                console.log('Contains new line');
+                return;
             }
 
             if (selectedText !== "") {
@@ -547,8 +564,10 @@
                         sourceText = finalstr;
                     }
 
-                    var kuroshiro = new Kuroshiro();
-                    kuroshiro.init(new KuromojiAnalyzer({ dictPath: "https://indojapcorp.github.io/tts/js/dict" }))
+                    var kuroshiro = new Kuroshiro();//https://github.com/indojapcorp/tts/tree/main/js/dict
+                    //https://indojapcorp.github.io/tts/js/dict
+                    //kuroshiro.init(new KuromojiAnalyzer({ dictPath: "https://indojapcorp.github.io/tts/js/dict" }))
+                    kuroshiro.init(new KuromojiAnalyzer({ dictPath: "https://github.com/indojapcorp/tts/tree/main/js/dict" }))
                         .then(function () {
                             return kuroshiro.convert(sourceText, { mode: "furigana", to: "romaji" });
                             return kuroshiro.convert(sourceText, { mode: "spaced", to: "romaji" });
